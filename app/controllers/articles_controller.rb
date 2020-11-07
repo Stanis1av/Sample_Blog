@@ -1,4 +1,9 @@
 class ArticlesController < ApplicationController
+
+  def show
+    @article = Article.find(params[:id])
+  end
+
   def new # Возвращает в браузер форму из new.html.erb
   end
 

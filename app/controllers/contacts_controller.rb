@@ -1,6 +1,6 @@
 class ContactsController < ApplicationController
   # add action
-  def index
+  def new
   end
 
   def create

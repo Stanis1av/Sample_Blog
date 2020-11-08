@@ -36,12 +36,10 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    @article.destroy
 
-    if @article.destroy
-      redirect_to @article
-    else
-      render action: 'destroy'
-    end
+    redirect_to_articles_path
+
   end
 
   private

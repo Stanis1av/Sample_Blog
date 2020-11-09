@@ -9,7 +9,7 @@
 
 <% @article.comments.each do |comment| %>
 	
-	<b><%= comment.author %></b>
+	<p><b><%= comment.author %></b>, said: </p>
 	<p><%= comment.body %></p>
 	<small><%= comment.created_at %></small><br/>
 	<hr/>

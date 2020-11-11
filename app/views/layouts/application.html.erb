@@ -10,7 +10,10 @@
   </head>
 
   <body>
-    <a href="/users/sign_in" data>Sign in</a> | <a href="/users/sign_out" data-method="delete">Sign Out</a>
+
+    <%= link_to 'Sign in', new_user_session_path %> | <%= link_to 'Sign out', destroy_user_session_path, method: :delete %>
+
+    <!-- <a href="/users/sign_in" data>Sign in</a> | <a href="/users/sign_out" data-method="delete">Sign Out</a> -->
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 

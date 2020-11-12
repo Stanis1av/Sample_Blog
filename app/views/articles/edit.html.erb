@@ -4,14 +4,14 @@
 url и method, это ключи хеша, а article_path и put значения нашего хеша  -->
 <p>
 	<%= f.label :title %><br/>
-	<%= f.text_field :title %>
+	<%= f.text_field :title, class: "form-control col-5" %>
 </p>
 <p>
 	<%= f.label :text %><br/>
-	<%= f.text_area :text %>
+	<%= f.text_area :text, class: "form-control col-7", rows: 5 %>
 </p>
 
 <p>
-	<%= f.submit %>
+	<%= f.submit class: "btn btn-primary" %>
 </p>
 	<% end %>

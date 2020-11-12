@@ -19,15 +19,6 @@ ActiveRecord::Schema.define(version: 2020_11_11_130205) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "comments", force: :cascade do |t|
-    t.string "author"
-    t.text "body"
-    t.integer "article_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["article_id"], name: "index_comments_on_article_id"
-  end
-
   create_table "contacts", force: :cascade do |t|
     t.string "email"
     t.text "message"
@@ -49,5 +40,4 @@ ActiveRecord::Schema.define(version: 2020_11_11_130205) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
-  add_foreign_key "comments", "articles"
 end

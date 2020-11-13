@@ -3,4 +3,8 @@ class Article < ApplicationRecord
   validates :text, presence: true
 
   has_many :comments # связываем две сущности между собой
+
+  def subject
+    title
+  end
 end

@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+
+  contacts:
+    contacts_us: "Contacts Us!"

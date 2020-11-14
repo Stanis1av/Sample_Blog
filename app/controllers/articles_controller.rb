@@ -1,9 +1,14 @@
 class ArticlesController < ApplicationController
 
-  before_action :authenticate_user!, :only => [:new, :create, :edit]
+  before_action :authenticate_user!, :only => [:new, :create, :edit, :destroy]
+
+  def is_the_owner
+    current_user.id == Article.find(params[:id]).user_id
+  end
 
   def index
     @articles = Article.all
+
   end
 
   def show
@@ -16,6 +21,9 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new(article_params)
 
+    # current_user.articles << article
+    @article.user_id = current_user.id
+
     if @article.save
       redirect_to @article
     else
@@ -25,6 +33,12 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+
+    if !is_the_owner
+      redirect_to articles_path
+      # @error_article = 'You do not have permission to edit this article.'
+    end
+
   end
 
   def update
@@ -39,9 +53,16 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    @article.destroy
 
-    redirect_to_articles_path
+    if is_the_owner
+      @article.destroy
+      redirect_to articles_path
+    else
+      redirect_to articles_path
+      # @error_article = 'You do not have permission to delete this article.'
+    end
+
+
 
   end
 

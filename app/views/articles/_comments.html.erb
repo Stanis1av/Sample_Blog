@@ -1,0 +1,34 @@
+<% if @article.comments.empty? %>
+	<h3>No Comments<h3>
+	<hr/>
+<% else %>
+
+	<h3>Comments (<%= @article.comments.size %>)</h3>
+
+	<% @article.comments.each do |comment| %>
+		
+		<p><b><%= comment.author_name %></b>, said: </p>
+		<p><%= comment.body %></p>
+		<p>Добавлено <%= distance_of_time_in_words(comment.article.created_at, comment.created_at) %> назад</p><br/>
+		<hr/>
+	<% end %>
+<% end %>
+
+
+<h4>Add comments</h4>
+
+<p>
+<%= form_for([@article, @article.comments.build]) do |f| %>
+<div class="col-sm-9">
+	<div class="form-group">
+		<%= f.label :body, "Введите комментарий" %><br/>
+		<%= f.text_area :body, class: "form-control", rows: 2 %>
+	<br/>
+	</div>
+</div>
+
+<p>
+	<%= f.submit "Комментировать", class: "btn btn-primary" %>
+</p>
+	<% end %>
+</p>

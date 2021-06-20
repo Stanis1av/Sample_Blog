@@ -7,7 +7,7 @@ class ArticlesController < ApplicationController
   end
 
   def index
-    @articles = Article.all
+    @articles = Article.all.order(created_at: :desc)
 
   end
 
@@ -25,9 +25,9 @@ class ArticlesController < ApplicationController
     @article.user_id = current_user.id
 
     if @article.save
-      redirect_to @article
+      redirect_to @article, notice: "Статья успешно создана"
     else
-      render action: 'new'
+      render action: 'new', alert: "Не удалось создать статью"
     end
   end
 
@@ -45,9 +45,9 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     if @article.update(article_params)
-      redirect_to @article
+      redirect_to @article, notice: "Статья успешно обновлена"
     else
-      render action: 'edit'
+      render action: 'edit', alert: "Не удалось обновить статью"
     end
   end
 
@@ -56,19 +56,17 @@ class ArticlesController < ApplicationController
 
     if is_the_owner
       @article.destroy
-      redirect_to articles_path
+      redirect_to articles_path, notice: "Статья успешно удалена"
     else
-      redirect_to articles_path
+      redirect_to articles_path, alert: "Не удалось удалить статью"
       # @error_article = 'You do not have permission to delete this article.'
     end
-
-
 
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :text)
+    params.require(:article).permit(:title, :content, :tag_list)
   end
 end

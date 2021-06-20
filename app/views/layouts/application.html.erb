@@ -1,67 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
-    <title>MyBlog</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/header' %>
   </head>
 
   <body>
+    <%= render 'layouts/navbar_application' %>
 
-    <!-- <a href="/users/sign_in" data>Sign in</a> | <a href="/users/sign_out" data-method="delete">Sign Out</a> -->
-   
-    <!-- <div class="container-fluid"> -->
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <%= link_to 'Sample Blog', root_path, class: "navbar-brand" %>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <%= link_to 'Article', articles_path, class: "nav-item nav-link" %>
-          <%= link_to 'Create Article', new_article_path, class: "nav-item nav-link" %>
-          
-        </div>
-        <div class="ml-auto p-2 bd-highlight"> <!-- Размещение эл-та в крайнем правом углу-->
-      
-        <% if user_signed_in? %>
-
-          <b class="username_style"><%= current_user.username %></b> <%= link_to 'Sign out', destroy_user_session_path, method: :delete, class: "btn btn-outline-success" %>
-
-        <% else %>
-
-          <%= link_to 'Sign in', new_user_session_path, class: "btn btn-outline-success" %>
-
-        <% end %>
-
-      </div>
-
-      <!-- </div> -->
-      
-      </nav>
-        
     <div class="container-fluid">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-      <!-- <div class="alert alert-danger" role="alert"> -->
-      <!-- </div> -->
-
-
+      <br/>
+      <%= render 'layouts/alerts' %>
       <%= yield %>
     </div>
-
   </body>
 </html>

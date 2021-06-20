@@ -1,3 +1,3 @@
 class Comment < ApplicationRecord
-  belongs_to :article # комментарии пренадлежит статье
+  belongs_to :article
 end

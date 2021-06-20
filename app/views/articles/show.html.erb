@@ -1,32 +1,24 @@
-<h1><%= @article.title %></h1>
+<div class="row">
+	<div class="col-lg-2 col-md-1 ml-auto mr-auto">
+	</div>
 
-<p>
-	<%= @article.text %>
-</p>
+  	<div class="col-lg-6 col-md-6 ml-auto mr-auto">
+		<h1><%= @article.title %></h1>
 
-<hr/>
-<h3>Comments</h3>
+		<p>
+			<%= @article.content %>
+		</p>
+		<hr/>
+		<p>
+		  Tags:
+		  <% @article.tags.each do |tag| %>
+		    <%= link_to tag.name, tag_path(tag) %>
+		  <% end %>
+		</p>
+		<hr/>
+		<%= render 'articles/comments' %>
+	</div>
 
-<% @article.comments.each do |comment| %>
-	
-	<p><b><%= comment.author %></b>, said: </p>
-	<p><%= comment.body %></p>
-	<small><%= comment.created_at %></small><br/>
-	<hr/>
-<% end %>
-
-<h3>Add comments</h3>
-
-<p>
-<%= form_for([@article, @article.comments.build]) do |f| %>
-
-<p>
-	<%= f.label :body %><br/>
-	<%= f.text_area :body %>
-</p>
-
-<p>
-	<%= f.submit %>
-</p>
-	<% end %>
-</p>
+	<div class="col-lg-4 col-md-4 ml-auto mr-auto">
+	</div>
+</div>

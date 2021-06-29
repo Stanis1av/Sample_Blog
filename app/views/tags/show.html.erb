@@ -1,7 +1,7 @@
 <h1>Статьи с тегом: <%= @tag.name %></h1>
 
 <ul>
-  <% @tag.articles.each do |article| %>
-    <li><%= link_to article.title, article_path(article) %></li>
+  <% @tag.posts.each do |post| %>
+    <li><%= link_to post.title, post_path(post) %></li>
   <% end %>
 </ul>

@@ -3,20 +3,20 @@
 	</div>
 
   	<div class="col-lg-6 col-md-6 ml-auto mr-auto">
-		<h1><%= @article.title %></h1>
+		<h1><%= @post.title %></h1>
 
 		<p>
-			<%= @article.content %>
+			<%= @post.content %>
 		</p>
 		<hr/>
 		<p>
 		  Tags:
-		  <% @article.tags.each do |tag| %>
+		  <% @post.tags.each do |tag| %>
 		    <%= link_to tag.name, tag_path(tag) %>
 		  <% end %>
 		</p>
 		<hr/>
-		<%= render 'articles/comments' %>
+		<%= render 'posts/comments' %>
 	</div>
 
 	<div class="col-lg-4 col-md-4 ml-auto mr-auto">

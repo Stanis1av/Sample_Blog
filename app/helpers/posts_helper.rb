@@ -1,4 +1,4 @@
-module ArticlesHelper
+module PostsHelper
     def article_tag_list
     @article.tags.collect do |tag|
     tag.name

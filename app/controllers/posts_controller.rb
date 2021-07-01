@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-
+  # NOTE AUTHOR STEP 2: This is needed for the new author form to work in `app/views/posts/new.html.erb` and `app/views/posts/edit.html.erb`.
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, :only => [:new, :create, :edit, :destroy]
 
   def is_the_owner
@@ -12,14 +13,17 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    # NOTE COMMENT STEP 2: This is needed in order for `app/views/comments/_form.html.erb` to use `@comment`.
+    # NOTE COMMENT STEP 2: Using `@comment = @post.comments.build` did not work. This was becuase `<%= render "comments/form" %>` was being rendered before `<%= render @post.comments %>` in `app/views/posts/show.html.erb`.
+    @comment = Comment.new(post: @post)
   end
 
   def new # Возвращает в браузер форму из new.html.erb
+    @post = Post.new
   end
 
   def create
-    @post = Post.new(article_params)
+    @post = Post.create(article_params)
 
     # current_user.posts << article
     @post.user_id = current_user.id
@@ -32,8 +36,6 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post = Post.find(params[:id])
-
     if !is_the_owner
       render @post
       # @error_article = 'You do not have permission to edit this Post.'
@@ -42,8 +44,6 @@ class PostsController < ApplicationController
   end
 
   def update
-    @post = Post.find(params[:id])
-
     if @post.update(article_params)
       redirect_to @post, notice: "Статья успешно обновлена"
     else
@@ -52,8 +52,6 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post = Post.find(params[:id])
-
     if is_the_owner
       @post.destroy
       redirect_to post_path, notice: "Статья успешно удалена"
@@ -65,6 +63,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:title, :content, :tag_list)

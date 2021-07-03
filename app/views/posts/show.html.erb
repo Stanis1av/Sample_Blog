@@ -1,22 +1,20 @@
-<div class="row">
-	<div class="col-lg-2 col-md-1 ml-auto mr-auto">
-	</div>
-
-  	<div class="col-lg-6 col-md-6 ml-auto mr-auto">
-		<h1><%= @post.title %></h1>
-
-		<p>
-			<%= @post.content %>
-		</p>
-		<hr/>
-		<p>
-		  Tags:
-		  <% @post.tags.each do |tag| %>
-		    <%= link_to tag.name, tag_path(tag) %>
-		  <% end %>
-		</p>
-		<hr/>
-		<div class="card mb-3">
+<div class="card mb-3">
+    <div class="card-header">
+        <h1 class="mb-0"><%= @post.title %></h1>
+    </div>
+    <div class="card-body">
+        <small class="d-inline-block mb-3 text-secondary border-bottom">Posted by: <%= time_ago_in_words(@post.created_at) %> ago.</small>
+        <p><%= @post.content %></p>
+        <%= link_to "Edit Post", edit_post_path(@post), class: "btn btn-primary" %>
+    </div>
+    <p>
+	  Tags:
+	  <% @post.tags.each do |tag| %>
+	    <%= link_to tag.name, tag_path(tag) %>
+	  <% end %>
+	</p>
+</div>
+<div class="card mb-3">
     <div class="card-header">
         <h4 class="mb-0">Add A Comment:</h4>
     </div>
@@ -33,9 +31,4 @@
     <div id="comments" class="card-body">
         <%= render @post.comments %>
     </div>
-</div>
-	</div>
-
-	<div class="col-lg-4 col-md-4 ml-auto mr-auto">
-	</div>
 </div>

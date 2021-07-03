@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   def create
     # @post = Post.find(params[:post_id])
     # method 1
-    @comment = @post.comments.new(comment_params)
+    @comment = @post.comments.create(comment_params)
     @comment.author_name = current_user.username
 
         respond_to do |format|
@@ -16,12 +16,12 @@ class CommentsController < ApplicationController
                 format.html { redirect_to @post, notice: 'Comment was successfully created.' }
                 # NOTE COMMENT STEP 1: This will run the code in `app/views/comments/create.js.erb`.
                 format.js
-                format.json { render json: @post, status: :created, location: @post }
+                # format.json { render json: @post, status: :created, location: @post }
             else
                 format.html { render action: "new" }
                 # NOTE COMMENT STEP 1: This will run the code in `app/views/comments/create.js.erb`.
                 format.js
-                format.json { render json: @post.errors, status: :unprocessable_entity }
+                # format.json { render json: @post.errors, status: :unprocessable_entity }
             end
         end
     # method 2

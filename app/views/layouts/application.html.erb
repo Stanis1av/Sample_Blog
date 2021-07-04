@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render 'layouts/header' %>
+    <title>SampleBlog</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= render 'layouts/navbar_application' %>
-
-    <div class="container-fluid">
-      <br/>
-      <%= render 'layouts/alerts' %>
-      <%= yield %>
-    </div>
+    <%= yield %>
   </body>
 </html>

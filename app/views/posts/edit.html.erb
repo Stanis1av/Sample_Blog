@@ -1,0 +1,30 @@
+<div class="row mb-3">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h1 class="mb-0">Edit <%= @post.title %></h1>
+            </div>
+            <div class="card-body">
+                <%= form_for :post, url: post_path(@post), method: :put do |f| %> 
+                <%= render "shared/validation-messages", object: f.object %>
+                <div class="form-group">
+                    <%= f.label :title, "Наименовие статьи" %><br/>
+                    <%= f.text_field :title, class: "form-control col-5" %>
+                </div>
+                <div class="form-group">
+                    <%= f.label :content, "Содержимое статьи" %><br/>
+                    <%= f.text_area :content, class: "form-control col-7", rows: 5 %>
+                </div>
+                <hr/>
+                <div class="form-group">
+                  <%= f.label :tag_list, "Введите теги" %><br />
+                  <%= f.text_field :tag_list, class: "form-control", :value => post_tag_list %>
+                </div>
+                <div class="btn-group">
+                    <%= f.submit "Редактировать", class: "btn btn-primary" %>
+                </div>
+                    <% end %>
+            </div>
+        </div>
+    </div>    
+</div>

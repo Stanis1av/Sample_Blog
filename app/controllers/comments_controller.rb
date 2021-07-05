@@ -3,7 +3,8 @@ class CommentsController < ApplicationController
   before_action :set_post, only: [:create, :edit, :update]
 
   def create
-    @comment = @post.comments.create(comment_params)
+    @comment = @post.comments.new(comment_params)
+    @comment.user_id = current_user.id
     respond_to do |format|
       if  @comment.save
         format.html { redirect_to @post, notice: 'Comment was successfully created.' }

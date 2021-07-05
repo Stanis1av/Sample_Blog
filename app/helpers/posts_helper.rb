@@ -4,4 +4,8 @@ module PostsHelper
             tag.name
         end.join(", ")
     end
+
+    def post_excerpt(post)
+        sanitize(truncate(post.body, length: 50)) if post && post.body.present?
+    end
 end

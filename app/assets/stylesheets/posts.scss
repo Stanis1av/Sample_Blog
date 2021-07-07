@@ -1,3 +1,33 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+svg path {
+fill:inherit;
+stroke:inherit;
+stroke-width:inherit;
+}
+
+.bi-caret-up-fill {
+  height: 30px;
+  weght: 30px;
+  border: none;
+  color: #70726F;
+  transition: all .5s ease;
+
+  &:hover {
+	fill:#479F76;
+  }
+}
+
+
+.bi-caret-down-fill {
+  height: 30px;
+  weght: 30px;
+  border: none;
+  color: #70726F;
+  transition: all .5s ease;
+
+  &:hover {
+	fill:#E35D6A;
+  }
+}

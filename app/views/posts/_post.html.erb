@@ -1,6 +1,6 @@
 <article class="card mb-3 post post-<%= post.id %>">
     <div class="card-header">
-        <small class="d-inline-block mb-3 text-secondary border-bottom">Posted by:  <%= time_ago_in_words(post.created_at) %> ago.</small>
+        <small class="d-inline-block mb-3 text-secondary border-bottom">Posted by: <b><%= post.user.username %></b> <%= time_ago_in_words(post.created_at) %> ago.</small>
         <h3 class="mb-0"><%= post.title %></h3>
     </div>
     <div class="card-body">
